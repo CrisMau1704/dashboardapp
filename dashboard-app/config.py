@@ -63,7 +63,7 @@ AUTH_TYPE = AUTH_DB
 # Babel config for translations
 # ---------------------------------------------------
 # Setup default language
-BABEL_DEFAULT_LOCALE = "en"
+BABEL_DEFAULT_LOCALE = "es"  # Cambiado a español
 # Your application default translation path
 BABEL_DEFAULT_FOLDER = "translations"
 # The allowed translation for you app
@@ -77,21 +77,35 @@ LANGUAGES = {
     "ru": {"flag": "ru", "name": "Russian"},
     "pl": {"flag": "pl", "name": "Polish"},
 }
+
 # ---------------------------------------------------
 # Image and file configuration
 # ---------------------------------------------------
 # The file upload folder, when using models with files
-UPLOAD_FOLDER = basedir + "/app/static/uploads/"
+UPLOAD_FOLDER = os.path.join(basedir, "app", "static", "uploads")
 
 # The image upload folder, when using models with images
-IMG_UPLOAD_FOLDER = basedir + "/app/static/uploads/"
+IMG_UPLOAD_FOLDER = os.path.join(basedir, "app", "static", "uploads")
 
 # The image upload url, when using models with images
 IMG_UPLOAD_URL = "/static/uploads/"
+
+# Configuración adicional para archivos
+MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB máximo para imágenes
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+
 # Setup image size default is (300, 200, True)
 # IMG_SIZE = (300, 200, True)
 
+# ---------------------------------------------------
+# Timezone configuration para Bolivia
+# ---------------------------------------------------
+# Configurar zona horaria
+BABEL_DEFAULT_TIMEZONE = "America/La_Paz"
+
+# ---------------------------------------------------
 # Theme configuration
+# ---------------------------------------------------
 # these are located on static/appbuilder/css/themes
 # you can create your own and easily use them placing them on the same dir structure to override
 # APP_THEME = "bootstrap-theme.css"  # default bootstrap
@@ -107,3 +121,9 @@ IMG_UPLOAD_URL = "/static/uploads/"
 # APP_THEME = "spacelab.css"
 # APP_THEME = "united.css"
 # APP_THEME = "yeti.css"
+
+# ---------------------------------------------------
+# Seguridad adicional para archivos
+# ---------------------------------------------------
+# Evitar que se ejecuten archivos peligrosos
+UPLOAD_FOLDER_PROTECTED = True
